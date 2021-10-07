@@ -724,12 +724,12 @@ describe('Runnable(title, fn)', function() {
   describe('interesting property', function() {
     describe('id', function() {
       it('should have a unique identifier', function() {
-        expect(new Runnable('foo', () => {}), 'to have property', 'id');
+        expect(new Runnable('foo', () => {}), 'to have property', 'mocha_id');
       });
 
       it('should have a permanent identifier', function() {
         const runnable = new Runnable('foo', () => {});
-        expect(runnable.id, 'to be', runnable.id);
+        expect(runnable.mocha_id, 'to be', runnable.mocha_id);
       });
     });
   });
