@@ -67,6 +67,7 @@ describe('Mocha', function() {
       ...sinon.createStubInstance(EventEmitter),
       slow: sinon.stub(),
       timeout: sinon.stub(),
+      enableTimeouts: sinon.stub(),
       bail: sinon.stub(),
       dispose: sinon.stub(),
       reset: sinon.stub(),
@@ -330,6 +331,19 @@ describe('Mocha', function() {
 
       it('should be chainable', function() {
         expect(mocha.delay(), 'to be', mocha);
+      });
+    });
+
+    describe('enableTimeouts()', function() {
+      it('should attempt to set enableTimeouts', function() {
+        mocha.enableTimeouts(false);
+        expect(suite.enableTimeouts, 'to have a call satisfying', [false]).and(
+          'was called once'
+        );
+      });
+
+      it('should be chainable', function() {
+        expect(mocha.enableTimeouts(), 'to be', mocha);
       });
     });
 

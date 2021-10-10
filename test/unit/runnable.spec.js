@@ -36,11 +36,19 @@ describe('Runnable(title, fn)', function() {
         it('should set the timeout value to disabled', function() {
           expect(run.timeout(), 'to be', DISABLED_TIMEOUTS);
         });
+
+        it('should enable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be false');
+        });
       });
 
       describe('given string timestamp', function() {
         it('should set the timeout value to disabled', function() {
           expect(run.timeout(), 'to be', DISABLED_TIMEOUTS);
+        });
+
+        it('should enable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be false');
         });
       });
     });
@@ -58,11 +66,19 @@ describe('Runnable(title, fn)', function() {
         it('should set the timeout value', function() {
           expect(run.timeout(), 'to be', timeout);
         });
+
+        it('should enable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be true');
+        });
       });
 
       describe('given string timestamp', function() {
         it('should set the timeout value', function() {
           expect(run.timeout(), 'to be', timeout);
+        });
+
+        it('should enable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be true');
         });
       });
     });
@@ -77,6 +93,10 @@ describe('Runnable(title, fn)', function() {
       describe('given numeric value', function() {
         it('should set the disabled timeout value', function() {
           expect(run.timeout(), 'to be', 0);
+        });
+
+        it('should disable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be false');
         });
       });
     });
@@ -94,7 +114,19 @@ describe('Runnable(title, fn)', function() {
         it('should set the disabled timeout value', function() {
           expect(run.timeout(), 'to be', 0);
         });
+
+        it('should disable timeouts', function() {
+          expect(run.enableTimeouts(), 'to be false');
+        });
       });
+    });
+  });
+
+  describe('#enableTimeouts(enabled)', function() {
+    it('should set disabled', function() {
+      var run = new Runnable();
+      run.enableTimeouts(false);
+      expect(run.enableTimeouts(), 'to be false');
     });
   });
 
