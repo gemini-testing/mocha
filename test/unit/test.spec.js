@@ -34,6 +34,10 @@ describe('Test', function() {
       expect(this._test.clone().slow(), 'to be', 101);
     });
 
+    it('should copy the enableTimeouts value', function() {
+      expect(this._test.clone().enableTimeouts(), 'to be', true);
+    });
+
     it('should copy the retries value', function() {
       expect(this._test.clone().retries(), 'to be', 3);
     });
