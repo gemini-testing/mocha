@@ -18,7 +18,7 @@
 'use strict';
 
 const {loadImage} = require('canvas');
-const {writeFile, mkdir, rmdir} = require('fs').promises;
+const {writeFile, mkdir, rm} = require('fs').promises;
 const {resolve} = require('path');
 const debug = require('debug')('mocha:docs:data:supporters');
 const needle = require('needle');
@@ -225,7 +225,7 @@ const getSupporters = async () => {
       }
     );
 
-  await rmdir(SUPPORTER_IMAGE_PATH, {recursive: true});
+  await rm(SUPPORTER_IMAGE_PATH, {recursive: true, force: true});
   debug('blasted %s', SUPPORTER_IMAGE_PATH);
   await mkdir(SUPPORTER_IMAGE_PATH, {recursive: true});
   debug('created %s', SUPPORTER_IMAGE_PATH);
@@ -262,15 +262,19 @@ const getSupporters = async () => {
   if (successRate < PRODUCTION_SUCCESS_THRESHOLD) {
     if (process.env.NETLIFY && process.env.CONTEXT !== 'deploy-preview') {
       throw new Error(
-        `Failed to meet success threshold ${PRODUCTION_SUCCESS_THRESHOLD *
-          100}% (was ${successRate *
-          100}%) for a production deployment; refusing to deploy`
+        `Failed to meet success threshold ${
+          PRODUCTION_SUCCESS_THRESHOLD * 100
+        }% (was ${
+          successRate * 100
+        }%) for a production deployment; refusing to deploy`
       );
     } else {
       console.warn(
-        `WARNING: Success rate of ${successRate *
-          100}% fails to meet production threshold of ${PRODUCTION_SUCCESS_THRESHOLD *
-          100}%; would fail a production deployment!`
+        `WARNING: Success rate of ${
+          successRate * 100
+        }% fails to meet production threshold of ${
+          PRODUCTION_SUCCESS_THRESHOLD * 100
+        }%; would fail a production deployment!`
       );
     }
   }
