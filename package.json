@@ -163,6 +163,7 @@
     "bin/*mocha",
     "assets/growl/*.png",
     "lib/**/*.{js,html,json}",
+    "typings/index.d.ts",
     "index.js",
     "mocha.css",
     "mocha.js",
