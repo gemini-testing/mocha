@@ -1,6 +1,6 @@
 {
   "name": "@gemini-testing/mocha",
-  "version": "9.2.4",
+  "version": "9.2.5",
   "description": "simple, flexible, fun test framework",
   "keywords": [
     "mocha",
